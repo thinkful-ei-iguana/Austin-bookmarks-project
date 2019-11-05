@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Bookmarks App</title>
+    <link href="main.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+      <h1 class="main-title">Bookmarks App!</h1>
+        <form id="main-container">
+
+          
+                <label for="name-form">Bookmark Name:</label><br>
+                <input id="name-form" name="name-form" type="text" placeholder="Ex: Cat Tyrants">
+                
+                <label for="url-form">Bookmark URL:</label><br>
+                <input id="url-form" name="url-form" type="url" placeholder="Ex: www.cat-tyrants.org">
+                
+                <legend class="rating-form">Rating:</legend>
+                    <section class="rating-form">
+                        <input type="radio" id="5star" name="rating" value="5"/>
+                            <label for="5star">5 stars</label>
+                        <input type="radio" id="4star" name="rating" value="4"/>
+                            <label for="4star">4 stars</label>
+                        <input type="radio" id="3star" name="rating" value="3"/>
+                            <label for="3star">3 stars</label>
+                        <input type="radio" id="2star" name="rating" value="2"/>
+                            <label for="2star">2 stars</label>
+                        <input type="radio" id="1star" name="rating" value="1"/>
+                            <label for="1star">1 stars</label>
+                    </section>
+                <br>
+
+                <label for="description-form">Description:</label><br>
+                <input id="description-form" name="description-form" type="text" placeholder="Input description here!...Website on how cats will overrule the world with an iron paw!..">
+        </form>
+
+      <main></main>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="store.js"></script>
+    <script src="index.js" type="module"></script>
+  </body>
+</html>
+
+
+<!-- new bookmark button on click call new bookmark html code using .html-->
