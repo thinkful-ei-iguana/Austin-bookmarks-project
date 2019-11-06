@@ -26,34 +26,63 @@ $('main').html(html);
 
 };
 
+const generateItemElement = function (item) {
+    let itemId = `<div class="item-id">${item.id}`;
+    return itemId;
+};
+
+const getItemIdFromElement = function (item) {
+    console.log(item);
+    return $(item).data('item-id');
+};
+
+const handleExpansionClicked = function () {
+    $('main').on('click', '.expand', (e) => {
+        e.preventDefault();
+        console.log('expand working');
+        
+        const id = getItemIdFromElement(e.currentTarget);
+        //const item = store.findById(id);
+        console.log(id);
+        store.setExpandedId(id, true);
+        render();
+    });
+};
+
 
 const generateBookmarkHtml = function (item) {
     if (item.expanded) {
         let expandedBookmarkHtml = `
-    <form class="saved-bookmarks">
+    <form class="expanded-bookmarks">
     <div class="title-bar">
         <button class="remove">X</button>
-        <legend class="saved-title">${item.title}</legend>  
+        <legend class="saved-title">${item.title}</legend> 
     </div>
 
     <div class="link-btn">
         <button type="button" class="url-link">Visit Site${item.url}</button>
     </div>
 
-    <div class="display-rating">5<${item.rating}</div>
+    <div class="display-rating">${item.rating}</div>
     <div class="description-text">
         <p>${item.description}
         </p>
+    </div>
+    <div class="expand-button">
+        <button type="button" data-item-id='${item.id}' class="expand">Expand/Collapse</button>  
     </div>
 </form>`;
         return expandedBookmarkHtml;
     }
     else {
         let unexpandedBookmarkHtml = `
-    <form class="saved-bookmarks">
+    <form class="collapsed-bookmarks">
     <div class="title-bar">
         <button class="remove">X</button>
-        <legend class="saved-title">${item.title}</legend>  
+        <legend class="saved-title">${item.title}</legend>
+    </div>
+    <div class="expand-button">
+        <button type="button" data-item-id='${item.id}' class="expand">Expand/Collapse</button>  
     </div>
     </form>`;
     return unexpandedBookmarkHtml;
@@ -118,7 +147,7 @@ const handleAddBookmark = function () {
 };
 
 
-
+handleExpansionClicked();
 handleCancelButton();
 handleAddBookmark();
 render();
