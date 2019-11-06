@@ -1,10 +1,10 @@
-$(function()) {
+/* eslint-disable indent */
 // build render function, manually change and check if still
 // works then set buttons and call render to auto populate info
-    const render = function() {
-       
-    }
+const render = function() {
+       let bookmarks = [...store.bookmarks];
 }
+
 
 // const addBookmark = function() {
 //     let addBookmarkHtml = `    
