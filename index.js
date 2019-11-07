@@ -26,11 +26,6 @@ $('main').html(html);
 
 };
 
-const generateItemElement = function (item) {
-    let itemId = `<div class="item-id">${item.id}`;
-    return itemId;
-};
-
 const getItemIdFromElement = function (item) {
     return $(item).data('item-id');
 };
@@ -42,6 +37,25 @@ const handleToggleExpandClick = function () {
         render();
     });
 };
+
+//this function is half working
+const handleDeleteBookmark = function () {
+    $('main').on('click', '.remove', (e)=>{
+        e.preventDefault();
+        console.log('delete button working');
+        const id = getItemIdFromElement(e.currentTarget);
+        store.removeBookmark(id);
+        $('.collapsed-bookmarks').remove();
+        render();
+    });
+};
+
+// const handleNewBookmarkSubmit = function () {
+//     $('main').on('submit', '.add-button', (e)=> {
+//         e.preventDefault();
+//         const newBookmark = $()
+//     });
+// };
 
 
 const generateBookmarkHtml = function (item) {
@@ -139,7 +153,12 @@ const handleAddBookmark = function () {
         render();
     });
 };
+
+const renderApp = function () {
+handleDeleteBookmark();
 handleToggleExpandClick();
 handleCancelButton();
 handleAddBookmark();
 render();
+};
+renderApp();

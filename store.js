@@ -25,8 +25,7 @@
   
 
   const findById = function (id) {
-    console.log(this);
-      return bookmarks.find(bookmark => bookmark.id === id);
+      return bookmarks.find(currentBookmark => currentBookmark.id === id);
   };
 
   const toggleExpandedId = function(id) {
@@ -35,14 +34,12 @@
     return bookmark.expanded;
   };
 
-
-  // const findAndUpdate = function (id, newData) {
-  //   const bookmark = this.findById(id);
-  //   Object.assign(bookmark, newData);
+  // const findBookmark = function (id) {
+  //   const currentBookmark = this.findById(id);
   // };
 
-  const findAndDelete = function(id) {
-    this.bookmarks= this.bookmarks.filter(bookmark => bookmark.id !== id)
+  const removeBookmark = function(id) {
+    this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id)
   };
   
 
@@ -53,5 +50,5 @@
     filter,
     findById,
     adding,
-    findAndDelete,
+    removeBookmark
   };
