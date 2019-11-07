@@ -28,6 +28,10 @@
       return bookmarks.find(currentBookmark => currentBookmark.id === id);
   };
 
+  const addBookmark = function (id, title, rating, url, description) {
+    this.bookmarks.push(id, title, rating, url, description);
+  };
+
   const toggleExpandedId = function(id) {
     let bookmark = findById(id);
     bookmark.expanded = !bookmark.expanded;
@@ -39,16 +43,22 @@
   // };
 
   const removeBookmark = function(id) {
-    this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id)
+    this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id);
+  };
+
+  const setError = function (error) {
+    this.error = error;
   };
   
 
   export default {
+    addBookmark,
     toggleExpandedId,
     bookmarks,
     error,
     filter,
     findById,
     adding,
-    removeBookmark
+    removeBookmark,
+    setError
   };

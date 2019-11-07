@@ -1,5 +1,6 @@
 /* eslint-disable indent */
 import store from './store.js';
+import api from './api.js';
 // build render function, manually change and check if still
 // works then set buttons and call render to auto populate info
 
@@ -44,18 +45,33 @@ const handleDeleteBookmark = function () {
         e.preventDefault();
         console.log('delete button working');
         const id = getItemIdFromElement(e.currentTarget);
-        store.removeBookmark(id);
-        $('.collapsed-bookmarks').remove();
-        render();
+        api.deleteBookmark(id)
+        .then(()=> {
+            store.removeBookmark(id);
+            render();
+        })
+        .catch((error)=> {
+            store.setError(error.message);
+            //render error funct?
+        });
     });
 };
-
-// const handleNewBookmarkSubmit = function () {
-//     $('main').on('submit', '.add-button', (e)=> {
-//         e.preventDefault();
-//         const newBookmark = $()
-//     });
-// };
+//build a function to submit the new bookmark or do through api?
+const handleNewBookmarkSubmit = function () {
+    $('main').on('submit', '.add-button', (e)=> {
+        e.preventDefault();
+        const newBookmark = $('.main-container').val();
+        $('.main-container').val('');
+        api.createBookmark(newBookmark)
+        .then((newBookmark)=> {
+            store.addBookmark(newBookmark);
+            render();
+        })
+        .catch((error)=> {
+            store.error(`${error}`);
+        });
+    });
+};
 
 
 const generateBookmarkHtml = function (item) {
@@ -155,6 +171,7 @@ const handleAddBookmark = function () {
 };
 
 const renderApp = function () {
+handleNewBookmarkSubmit();
 handleDeleteBookmark();
 handleToggleExpandClick();
 handleCancelButton();
