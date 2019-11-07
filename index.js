@@ -63,7 +63,7 @@ const generateBookmarkHtml = function (item) {
         </p>
     </div>
     <div class="expand-button">
-        <button type="button" data-item-id='${item.id}' class="expand">Expand/Collapse</button>  
+        <button type="button" data-item-id='${item.id}' class="expand">Collapse</button>  
     </div>
 </form>`;
         return expandedBookmarkHtml;
@@ -76,7 +76,7 @@ const generateBookmarkHtml = function (item) {
         <legend class="saved-title">${item.title}</legend>
     </div>
     <div class="expand-button">
-        <button type="button" data-item-id='${item.id}' class="expand">Expand/Collapse</button>  
+        <button type="button" data-item-id='${item.id}' class="expand">Expand</button>  
     </div>
     </form>`;
     return unexpandedBookmarkHtml;
