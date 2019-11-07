@@ -29,15 +29,12 @@
       return bookmarks.find(bookmark => bookmark.id === id);
   };
 
-  const setExpandedId = function(id, isExpanded) {
+  const toggleExpandedId = function(id) {
     let bookmark = findById(id);
-    bookmark.expanded = isExpanded;
-    return isExpanded;
+    bookmark.expanded = !bookmark.expanded;
+    return bookmark.expanded;
   };
 
-  const toggleExpanded = function (id, isExpanded) {
-    isExpanded = !isExpanded;
-  };
 
   // const findAndUpdate = function (id, newData) {
   //   const bookmark = this.findById(id);
@@ -50,12 +47,11 @@
   
 
   export default {
-    toggleExpanded,
+    toggleExpandedId,
     bookmarks,
     error,
     filter,
     findById,
     adding,
     findAndDelete,
-    setExpandedId
   };

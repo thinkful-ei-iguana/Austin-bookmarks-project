@@ -35,22 +35,10 @@ const getItemIdFromElement = function (item) {
     return $(item).data('item-id');
 };
 
-const handleExpansionClicked = function () {
-    $('main').on('click', '.expand', (e) => {
-        e.preventDefault();
-        console.log('expand working');
-        const id = getItemIdFromElement(e.currentTarget);
-        //const item = store.findById(id);
-        store.setExpandedId(id, true); 
-
-        render();
-    });
-};
-
 const handleToggleExpandClick = function () {
     $('main').on('click', '.expand', (e) => {
-        //const id = getItemIdFromElement(e.currentTarget);
-        store.toggleExpanded();
+        const id = getItemIdFromElement(e.currentTarget);
+        store.toggleExpandedId(id, true);
         render();
     });
 };
@@ -152,7 +140,6 @@ const handleAddBookmark = function () {
     });
 };
 handleToggleExpandClick();
-handleExpansionClicked();
 handleCancelButton();
 handleAddBookmark();
 render();
