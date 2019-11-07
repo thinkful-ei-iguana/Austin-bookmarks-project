@@ -32,7 +32,6 @@ const generateItemElement = function (item) {
 };
 
 const getItemIdFromElement = function (item) {
-    console.log(item);
     return $(item).data('item-id');
 };
 
@@ -40,11 +39,18 @@ const handleExpansionClicked = function () {
     $('main').on('click', '.expand', (e) => {
         e.preventDefault();
         console.log('expand working');
-        
         const id = getItemIdFromElement(e.currentTarget);
         //const item = store.findById(id);
-        console.log(id);
-        store.setExpandedId(id, true);
+        store.setExpandedId(id, true); 
+
+        render();
+    });
+};
+
+const handleToggleExpandClick = function () {
+    $('main').on('click', '.expand', (e) => {
+        //const id = getItemIdFromElement(e.currentTarget);
+        store.toggleExpanded();
         render();
     });
 };
@@ -145,8 +151,7 @@ const handleAddBookmark = function () {
         render();
     });
 };
-
-
+handleToggleExpandClick();
 handleExpansionClicked();
 handleCancelButton();
 handleAddBookmark();
