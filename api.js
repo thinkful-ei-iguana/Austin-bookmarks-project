@@ -1,5 +1,4 @@
 /* eslint-disable indent */
-//import cuid from './cuid'; ??
 const BASE_URL = ' https://thinkful-list-api.herokuapp.com/austin';
 
 const listApiFetch = function (...args) {
@@ -42,7 +41,7 @@ const getBookmarks = function () {
 
 const newBookmark = function (id, title, rating, url, description) {
     const newInput = JSON.stringify({ id, title, rating, url, description });
-    return listApiFetch(`${BASE_URL/bookmarks}`, {
+    return listApiFetch(`${BASE_URL}/bookmarks`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -50,17 +49,6 @@ const newBookmark = function (id, title, rating, url, description) {
         body: newInput
     });
 };
-
-// const createBookmark = function (title, rating, url, description) {
-//     return {
-//         //id: cuid(), ???
-//         title,
-//         rating,
-//         url,
-//         description,
-//         expanded: false
-//     };
-// };
 
 
 const deleteBookmark = function (id) {

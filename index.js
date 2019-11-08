@@ -10,20 +10,26 @@ const greaterThanFilter = function(item) {
 
 const render = function () {
     console.log(store);
+    
     let bookmarks = [...store.bookmarks];
-    if(store.filter>0) 
-    bookmarks = bookmarks.filter(greaterThanFilter);
+    
+    if(store.filter>0) {
+        bookmarks = bookmarks.filter(greaterThanFilter);
+    }
 
     let html;
+
     if(store.adding) {
         html = generateAddBookmarkHtml();
+    } else {
+        html = bookmarks.map(item => generateBookmarkHtml(item)).join('');
     }
-    else {
-    html = bookmarks.map(item => generateBookmarkHtml(item)).join('');
-}
-if (store.error) 
-html = `<div>${store.error}</div>` + html;
-$('main').html(html);
+
+    if (store.error) {
+        html = `<div>${store.error}</div>` + html;
+    }
+
+    $('main').html(html);
 
 };
 
@@ -44,7 +50,7 @@ const handleDeleteBookmark = function () {
     $('main').on('click', '.remove', (e)=>{
         e.preventDefault();
         console.log('delete button working');
-        const id = getItemIdFromElement(e.currentTarget);
+        const id = getItemIdFromElement(e.currentTarget); //get the id appropriately
         api.deleteBookmark(id)
         .then(()=> {
             store.removeBookmark(id);
@@ -58,17 +64,26 @@ const handleDeleteBookmark = function () {
 };
 //build a function to submit the new bookmark or do through api?
 const handleNewBookmarkSubmit = function () {
-    $('main').on('submit', '.add-button', (e)=> {
+    $('main').on('submit', '#main-container', (e)=> {
         e.preventDefault();
-        const newBookmark = $('.main-container').val();
-        $('.main-container').val('');
-        api.createBookmark(newBookmark)
+        
+        const name = $(this).find('#name').val();
+        const url = $(this).find('#url').val();
+        const rating = $(this).find('.rating:checked').val();
+        const description = $(this).find('#description').val();
+
+        
+        
+        $('#main-container')[0].reset();
+
+        api.newBookmark(store.bookmarks.length,name,rating,url,description)
         .then((newBookmark)=> {
             store.addBookmark(newBookmark);
+            store.adding = false;
             render();
         })
         .catch((error)=> {
-            store.error(`${error}`);
+            store.setError(`${error}`);
         });
     });
 };
@@ -119,11 +134,11 @@ const generateBookmarkHtml = function (item) {
 const generateAddBookmarkHtml = function () {
     let addBookmarkHtml = `    
      <form id="main-container">
-    <label for="name-form">Bookmark Name:</label>
-    <input id="name-form" name="name-form" type="text" placeholder="Ex: Cat Tyrants">
+    <label for="name">Bookmark Name:</label>
+    <input id="name" name="name" type="text" placeholder="Ex: Cat Tyrants">
         
-    <label for="url-form">Bookmark URL:</label>
-    <input id="url-form" name="url-form" type="url" placeholder="Ex: www.cat-tyrants.org">
+    <label for="url">Bookmark URL:</label>
+    <input id="url" name="url" type="url" placeholder="Ex: www.cat-tyrants.org">
 
     <legend class="rating-form">Rating:</legend>
         <section class="rating-form">
@@ -140,8 +155,8 @@ const generateAddBookmarkHtml = function () {
         </section>
         
 
-        <label for="description-form">Description:</label><br>
-        <textarea id="description-form" name="description-form" type="text" placeholder="Input description here! Example...Website on how cats will overrule the world with an iron paw!"></textarea>
+        <label for="description">Description:</label><br>
+        <textarea id="description" name="description" type="text" placeholder="Input description here! Example...Website on how cats will overrule the world with an iron paw!"></textarea>
     
     <div class="create-cancel-buttons">    
         <button type="submit" class="add-button">Create</button>
@@ -178,4 +193,6 @@ handleCancelButton();
 handleAddBookmark();
 render();
 };
-renderApp();
+
+
+$(renderApp);
