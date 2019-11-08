@@ -62,7 +62,7 @@ const handleDeleteBookmark = function () {
         });
     });
 };
-//build a function to submit the new bookmark or do through api?
+//handles new bookmarks being added through api
 const handleNewBookmarkSubmit = function () {
     $('main').on('submit', '#main-container', (e)=> {
         e.preventDefault();
