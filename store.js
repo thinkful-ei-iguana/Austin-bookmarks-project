@@ -29,7 +29,7 @@
   };
 
   const addBookmark = function (id, title, rating, url, description) {
-    this.bookmarks.push(id, title, rating, url, description);
+    return this.bookmarks.push(id, title, rating, url, description);
   };
 
   const toggleExpandedId = function(id) {

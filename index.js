@@ -9,7 +9,6 @@ const greaterThanFilter = function(item) {
 };
 
 const render = function () {
-    console.log(store);
     
     let bookmarks = [...store.bookmarks];
     
@@ -65,6 +64,7 @@ const handleDeleteBookmark = function () {
 //handles new bookmarks being added through api
 const handleNewBookmarkSubmit = function () {
     $('main').on('submit', '#main-container', (e)=> {
+        console.log('create bookmark button working?');
         e.preventDefault();
         
         const name = $('#name').val();
@@ -176,7 +176,7 @@ const handleCancelButton = function() {
     });
 };
 
-const handleCreateBookmark = function () {
+const handleAddBookmark = function () {
     $('.new-filter-buttons').on('click', '.add-new', (e) => {
         e.preventDefault();
         console.log('add button working');
@@ -190,7 +190,7 @@ handleNewBookmarkSubmit();
 handleDeleteBookmark();
 handleToggleExpandClick();
 handleCancelButton();
-handleCreateBookmark();
+handleAddBookmark();
 render();
 };
 
