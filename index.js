@@ -45,7 +45,7 @@ const handleToggleExpandClick = function () {
 };
 
 //this function is half working
-//cancel button will work but logs 404 error DELETE not found "cannot find bookmark"
+//delete button will work but logs 404 error DELETE not found "cannot find bookmark"
 const handleDeleteBookmark = function () {
     $('main').on('click', '.remove', (e)=>{
         e.preventDefault();
@@ -67,18 +67,16 @@ const handleDeleteBookmark = function () {
 const handleNewBookmarkSubmit = function () {
     $('main').on('submit', '#main-container', (e)=> {
         console.log('create bookmark button working');
-        e.preventDefault();
-        
+        e.preventDefault(); 
         const name = $('#name').val();
         const url = $('#url').val();
         const rating = $('.rating:checked').val();
-        const description = $('#description').val();
+        const desc = $('#desc').val();
 
         
         
         $('#main-container')[0].reset();
-
-        api.newBookmark(store.bookmarks.length,name,rating,url,description)
+        api.newBookmark(store.bookmarks.length,name,rating,url,desc)
         .then((newBookmark)=> {
             store.addBookmark(newBookmark);
             store.adding = false;
@@ -106,7 +104,8 @@ const generateBookmarkHtml = function (item) {
 
     <div class="display-rating">${item.rating}</div>
     <div class="description-text">
-        <p>${item.description}
+    
+        <p>${item.desc}
         </p>
     </div>
     <div class="expand-button">
@@ -175,7 +174,6 @@ const handleCancelButton = function() {
         console.log('cancel button working');
         store.adding = false;
         render();
-        //with render(); called, many errors appear after clicking create and trying to click cancel, if removed errors no longer exist but unable to close field after clicking cancel
     });
 };
 
