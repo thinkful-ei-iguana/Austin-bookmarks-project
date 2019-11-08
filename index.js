@@ -67,10 +67,10 @@ const handleNewBookmarkSubmit = function () {
     $('main').on('submit', '#main-container', (e)=> {
         e.preventDefault();
         
-        const name = $(this).find('#name').val();
-        const url = $(this).find('#url').val();
-        const rating = $(this).find('.rating:checked').val();
-        const description = $(this).find('#description').val();
+        const name = $('#name').val();
+        const url = $('#url').val();
+        const rating = $('.rating:checked').val();
+        const description = $('#description').val();
 
         
         
@@ -176,7 +176,7 @@ const handleCancelButton = function() {
     });
 };
 
-const handleAddBookmark = function () {
+const handleCreateBookmark = function () {
     $('.new-filter-buttons').on('click', '.add-new', (e) => {
         e.preventDefault();
         console.log('add button working');
@@ -190,7 +190,7 @@ handleNewBookmarkSubmit();
 handleDeleteBookmark();
 handleToggleExpandClick();
 handleCancelButton();
-handleAddBookmark();
+handleCreateBookmark();
 render();
 };
 
