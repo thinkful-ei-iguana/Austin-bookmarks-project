@@ -174,6 +174,7 @@ const handleCancelButton = function() {
         e.preventDefault();
         console.log('cancel button working');
         store.adding = false;
+        render();
         //with render(); called, many errors appear after clicking create and trying to click cancel, if removed errors no longer exist but unable to close field after clicking cancel
     });
 };
