@@ -11,7 +11,7 @@ const greaterThanFilter = function(item) {
 const render = function () {
     
     let bookmarks = [...store.bookmarks];
-    
+    console.log(bookmarks);
     if(store.filter>0) {
         bookmarks = bookmarks.filter(greaterThanFilter);
     }
@@ -45,11 +45,12 @@ const handleToggleExpandClick = function () {
 };
 
 //this function is half working
+//cancel button will work but logs 404 error DELETE not found "cannot find bookmark"
 const handleDeleteBookmark = function () {
     $('main').on('click', '.remove', (e)=>{
         e.preventDefault();
         console.log('delete button working');
-        const id = getItemIdFromElement(e.currentTarget); //get the id appropriately
+        let id = getItemIdFromElement(e.currentTarget); //get the id appropriately
         api.deleteBookmark(id)
         .then(()=> {
             store.removeBookmark(id);
@@ -62,9 +63,10 @@ const handleDeleteBookmark = function () {
     });
 };
 //handles new bookmarks being added through api
+//form input logs the new info correctly and stores into bookmarks array but will also add multiple undefined/null objects and the create button will not push/update the new bookmark into the saved bookmark html
 const handleNewBookmarkSubmit = function () {
     $('main').on('submit', '#main-container', (e)=> {
-        console.log('create bookmark button working?');
+        console.log('create bookmark button working');
         e.preventDefault();
         
         const name = $('#name').val();
@@ -170,9 +172,9 @@ const generateAddBookmarkHtml = function () {
 const handleCancelButton = function() {
     $('main').on('click', '.cancel-button', (e) => {
         e.preventDefault();
-        console.log('cancel button working?');
+        console.log('cancel button working');
         store.adding = false;
-        render();
+        //with render(); called, many errors appear after clicking create and trying to click cancel, if removed errors no longer exist but unable to close field after clicking cancel
     });
 };
 

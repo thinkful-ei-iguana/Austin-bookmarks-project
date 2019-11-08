@@ -6,7 +6,7 @@
         title: 'Title 1',
         rating: 3,
         url: 'http://www.title1.com',
-        description: 'lorem ipsum dolor sitasdfsdfdsafsadfdsafasdfdsafadsfadsfadsfadsfsadfasd<br>fadsfsadfasdfasdfadsfsdfsdfas',
+        description: 'lorem ipsum dolor sitsdfsdfas',
         expanded: false
       },
       {
@@ -23,6 +23,10 @@
     let error = null;
     let filter = 0;
   
+  const findAndUpdate = function (id, newBookMark) {
+    const currentBookmark = this.findById(id);
+    Object.assign(currentBookmark, newBookMark);
+  };  
 
   const findById = function (id) {
       return bookmarks.find(currentBookmark => currentBookmark.id === id);
@@ -38,12 +42,9 @@
     return bookmark.expanded;
   };
 
-  // const findBookmark = function (id) {
-  //   const currentBookmark = this.findById(id);
-  // };
 
   const removeBookmark = function(id) {
-    this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id);
+    return this.bookmarks = this.bookmarks.filter(currentBookmark => currentBookmark.id !== id);
   };
 
   const setError = function (error) {
@@ -60,5 +61,6 @@
     findById,
     adding,
     removeBookmark,
-    setError
+    setError,
+    findAndUpdate
   };
