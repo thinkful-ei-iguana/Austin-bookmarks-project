@@ -32,8 +32,8 @@
       return bookmarks.find(currentBookmark => currentBookmark.id === id);
   };
 
-  const addBookmark = function (id, title, rating, url, description) {
-    return this.bookmarks.push(id, title, rating, url, description);
+  const addBookmark = function (bookmark) {
+    return this.bookmarks.push(bookmark);
   };
 
   const toggleExpandedId = function(id) {
