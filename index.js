@@ -5,8 +5,17 @@ import api from './api.js';
 // works then set buttons and call render to auto populate info
 
 const greaterThanFilter = function(item) {
-    return item.rating>=store.filter;
+    console.log(store.filter);
+    return item.rating>=store.filter;  
 };
+
+const handleRating = function () {
+    $('.filter').change(()=> {
+        console.log($('.filter').val());
+        greaterThanFilter();
+        });
+    };
+    //console.log($('.filter').val());      
 
 const render = function () {
     
@@ -44,13 +53,12 @@ const handleToggleExpandClick = function () {
     });
 };
 
-//this function is half working
-//delete button will work but logs 404 error DELETE not found "cannot find bookmark"
+
 const handleDeleteBookmark = function () {
     $('main').on('click', '.remove', (e)=>{
         e.preventDefault();
         console.log('delete button working');
-        let id = getItemIdFromElement(e.currentTarget); //get the id appropriately
+        let id = getItemIdFromElement(e.currentTarget);
         api.deleteBookmark(id)
         .then(()=> {
             store.removeBookmark(id);
@@ -58,12 +66,11 @@ const handleDeleteBookmark = function () {
         })
         .catch((error)=> {
             store.setError(error.message);
-            //render error funct?
         });
     });
 };
+
 //handles new bookmarks being added through api
-//form input logs the new info correctly and stores into bookmarks array but will also add multiple undefined/null objects and the create button will not push/update the new bookmark into the saved bookmark html
 const handleNewBookmarkSubmit = function () {
     $('main').on('submit', '#main-container', (e)=> {
         console.log('create bookmark button working');
@@ -71,10 +78,8 @@ const handleNewBookmarkSubmit = function () {
         const name = $('#name').val();
         const url = $('#url').val();
         const rating = $('.rating:checked').val();
-        const desc = $('#desc').val();
+        const desc = $('#description').val();
 
-        
-        
         $('#main-container')[0].reset();
         api.newBookmark(store.bookmarks.length,name,rating,url,desc)
         .then((newBookmark)=> {
@@ -94,12 +99,12 @@ const generateBookmarkHtml = function (item) {
         let expandedBookmarkHtml = `
     <form class="expanded-bookmarks">
     <div class="title-bar">
-        <button class="remove">X</button>
+        <button class="remove" data-item-id='${item.id}'>X</button>
         <legend class="saved-title">${item.title}</legend> 
     </div>
 
     <div class="link-btn">
-        <button type="button" class="url-link">Visit Site${item.url}</button>
+    <a href="${item.url}" target="_blank"><button type="button" class="url-link">Visit Site</button></a>
     </div>
 
     <div class="display-rating">${item.rating}</div>
@@ -118,7 +123,7 @@ const generateBookmarkHtml = function (item) {
         let unexpandedBookmarkHtml = `
     <form class="collapsed-bookmarks">
     <div class="title-bar">
-        <button class="remove">X</button>
+        <button class="remove" data-item-id='${item.id}'>X</button>
         <legend class="saved-title">${item.title}</legend>
     </div>
     <div class="expand-button">
@@ -135,29 +140,36 @@ const generateBookmarkHtml = function (item) {
 const generateAddBookmarkHtml = function () {
     let addBookmarkHtml = `    
      <form id="main-container">
-    <label for="name">Bookmark Name:</label>
-    <input id="name" name="name" type="text" placeholder="Ex: Cat Tyrants">
-        
-    <label for="url">Bookmark URL:</label>
-    <input id="url" name="url" type="url" placeholder="Ex: www.cat-tyrants.org">
+    <label for="name">Name</label><br>
+    <input id="name" name="name" type="text" placeholder="Trees">
+       <br> 
+    <label for="url">URL</label> <br>
+    <input id="url" name="url" type="url" placeholder="www.trees.com">
 
     <legend class="rating-form">Rating:</legend>
         <section class="rating-form">
-            <input class="rating" type="radio" id="5star" name="rating" value="5" required/>
-                <label for="5star">5 stars</label>
-            <input class="rating" type="radio" id="4star" name="rating" value="4" required/>
-                <label for="4star">4 stars</label>
-            <input class="rating" type="radio" id="3star" name="rating" value="3" required/>
-                <label for="3star">3 stars</label>
-            <input class="rating" type="radio" id="2star" name="rating" value="2" required/>
-                <label for="2star">2 stars</label>
-            <input class="rating" type="radio" id="1star" name="rating" value="1" required/>
-                <label for="1star">1 stars</label>
+            <div class="ratings">
+                <label for="5star">5 Stars: </label>       
+                    <input class="rating" type="radio" id="5star" name="rating" value="5" required checked/><br>
+        
+                <label for="4star">4 Stars: </label>
+                    <input class="rating" type="radio" id="4star" name="rating" value="4" required checked/><br>
+                    
+                <label for="3star">3 Stars: </label>
+                    <input class="rating" type="radio" id="3star" name="rating" value="3" required checked/><br>
+                      
+                <label for="2star">2 Stars: </label>
+                    <input class="rating" type="radio" id="2star" name="rating" value="2" required checked/><br>
+                    
+                <label for="1star">1 Stars: </label>
+                    <input class="rating" type="radio" id="1star" name="rating" value="1" required checked/><br>  
+                    
+            <div>
         </section>
         
 
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description" type="text" placeholder="Input description here! Example...Website on how cats will overrule the world with an iron paw!"></textarea>
+        <label for="description">What's this site about?</label><br>
+        <input id="description" name="description" type="text" placeholder="Website on Trees!"></input>
     
     <div class="create-cancel-buttons">    
         <button type="submit" class="add-button">Create</button>
@@ -193,6 +205,7 @@ handleToggleExpandClick();
 handleCancelButton();
 handleAddBookmark();
 render();
+handleRating();
 };
 
 

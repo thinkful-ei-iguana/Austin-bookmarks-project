@@ -38,7 +38,7 @@ const validateUrl = function(url) {
 const getBookmarks = function () {
     return listApiFetch(`${BASE_URL}/bookmarks`);
 };
-//changed only these 2 description to desc
+
 const newBookmark = function (id, title, rating, url, desc) {
     const newInput = JSON.stringify({ id, title, rating, url, desc });
     return listApiFetch(`${BASE_URL}/bookmarks`, {
