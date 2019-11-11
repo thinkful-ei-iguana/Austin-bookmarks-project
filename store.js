@@ -1,15 +1,7 @@
 /* eslint-disable indent */
   
      const bookmarks = [ 
-      {
-        id: 'x56w',
-        title: 'Title 1',
-        rating: 3,
-        url: 'http://www.title1.com',
-        description: 'lorem ipsum dolor sit',
-        expanded: false
-      },
-       
+
      ];
   
     let adding = false;
@@ -44,6 +36,10 @@
     this.error = error;
   };
 
+  const filterOptions = function(number) {
+    this.filter = number;
+  };
+
   
 
   export default {
@@ -56,5 +52,6 @@
     adding,
     removeBookmark,
     setError,
-    findAndUpdate
+    findAndUpdate,
+    filterOptions,
   };

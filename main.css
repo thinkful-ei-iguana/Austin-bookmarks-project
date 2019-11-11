@@ -1,6 +1,6 @@
 /* add a bookmark screen css */
 
-@media only screen and (max-width: 600px) {
+/* responsive layout built mobile first and will expand to fit as needed across any screen */
 
 * {
     background-color: #DDE2E3;
@@ -244,6 +244,4 @@ p {
 
 .expand-button {
     background: none;
-}
-
 }

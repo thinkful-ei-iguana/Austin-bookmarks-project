@@ -4,19 +4,16 @@ import api from './api.js';
 // build render function, manually change and check if still
 // works then set buttons and call render to auto populate info
 
-const greaterThanFilter = function(item) {
-    console.log(store.filter);
-        $('.filter').on('change',(e) => {
-            e.preventDefault();
-            for (let i=0; i < item.legnth; i++) {
-            if (item.rating >= store.filter) {
-       
-            return item.rating>=store.filter;  
-            }
-        } 
-    });     
-};
 
+    const greaterThanFilter = function(){ 
+        $('.select-form').change( 
+            function(event){ 
+            event.preventDefault(); 
+            let newRating = $('#filter').val();
+            store.filterOptions(newRating); 
+            render(); 
+        });
+     };
 
     //console.log($('.filter').val());      
 
@@ -25,7 +22,7 @@ const render = function () {
     let bookmarks = [...store.bookmarks];
     console.log(bookmarks);
     if(store.filter>0) {
-        bookmarks = bookmarks.filter(greaterThanFilter);
+        bookmarks = bookmarks.filter(bookmark => bookmark.rating>=store.filter);
     }
 
     let html;
@@ -208,6 +205,7 @@ handleToggleExpandClick();
 handleCancelButton();
 handleAddBookmark();
 render();
+greaterThanFilter();
 };
 
 

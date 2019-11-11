@@ -1,0 +1,52 @@
+      <!-- form to be called when new bookmark is clicked -->
+      <!-- new bookmark button on click call new bookmark html code using .html-->
+            <form id="main-container">
+                <label for="name-form">Bookmark Name:</label><br>
+                <input id="name-form" name="name-form" type="text" placeholder="Ex: Cat Tyrants">
+                    
+                <label for="url-form">Bookmark URL:</label><br>
+                <input id="url-form" name="url-form" type="url" placeholder="Ex: www.cat-tyrants.org">
+
+                <legend class="rating-form">Rating:</legend>
+                    <section class="rating-form">
+                        <input class="rating" type="radio" id="5star" name="rating" value="5" required/>
+                            <label for="5star">5 stars</label>
+                        <input class="rating" type="radio" id="4star" name="rating" value="4" required/>
+                            <label for="4star">4 stars</label>
+                        <input class="rating" type="radio" id="3star" name="rating" value="3" required/>
+                            <label for="3star">3 stars</label>
+                        <input class="rating" type="radio" id="2star" name="rating" value="2" required/>
+                            <label for="2star">2 stars</label>
+                        <input class="rating" type="radio" id="1star" name="rating" value="1" required/>
+                            <label for="1star">1 stars</label>
+                    </section>
+                    <br>
+
+                    <label for="description-form">Description:</label><br>
+                    <textarea id="description-form" name="description-form" type="text" placeholder="Input description here! Example...Website on how cats will overrule the world with an iron paw!"></textarea>
+                
+                <div class="create-cancel-buttons">    
+                    <button type="submit" class="add-button">Create</button>
+                    <button type="button" class="cancel-button">Cancel</button>
+                </div>    
+            </form>
+<!-- create expanded and condensed list for main page -->
+<form class="saved-bookmarks">
+        <div class="title-bar">
+            <button class="remove">X</button>
+            <legend class="saved-title">Title<`${store.title}`</legend>  
+        </div>
+
+        <div class="link-btn"></div>
+            <button type="button" class="url-link">Visit Site<`${store.url}`</button>
+        </div>
+
+        <div class="display-rating">5<`${store.rating}`</div>
+        <div class="description-text">
+            <p>`${store.description}`
+            </p>
+        </div>
+    </form>
+
+
+
