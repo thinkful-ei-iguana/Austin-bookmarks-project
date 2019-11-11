@@ -115,7 +115,7 @@ legend {
     font-size: 20px;
     margin-top: 5px;
     font-family: Helvetica Neue;
-    background-color:white; 
+    background-color: white; 
     border-radius: 10px; 
     padding: 5px;
     margin-bottom: 14px;
@@ -154,69 +154,96 @@ legend {
 
 /* saved bookmarks form css */
 
-.expanded-bookmarks {
-    margin-left: 20%;
-    margin-right: 20%;
-    height: 250px;
-    border: 2px solid black;
+.collapsed-bookmarks {
+    height: 50px;
     padding: 25px;
 }
-.collapsed-bookmarks {
-    margin-left: 20%;
-    margin-right: 20%;
-    height: 50px;
-    border: 2px solid black;
+.expanded-bookmarks {
+    height: 220px;
     padding: 25px;
+    background-color: #DDE2E3;
+    border-radius: 15px;
 }
 
 .saved-title {
-    font-size: 35px;
+    background-color: #486B00;
+    color: #fff;
+    padding: 5px;
+    font-size: 30px;
 }
 
 .title-bar {
-    background-color: lightgrey;
-    border: 1.25px solid black;
-    width: auto;
+    background-color: #486B00;
+    border: 1.25px solid #7D4427;
+    width: 100%;
     padding: 5px;
+    border-radius: 6px;
 }
 .remove {
-    margin-top: 3px;
+    margin-top: 8px;
     font-weight: bolder;
     float: right;
-    font-size: 25px; 
+    font-size: 20px; 
+    background: none;
+    border-radius: 100%;
+    margin-right: 5px;
+    color: white;
+    border-color: white;
 }
-.link-btn {
-
-    padding: 5px;
+.link-btn, a {
+    font-size: 20px;
+    background-color: #DDE2E3;
 }
 
 .url-link {
-    width: 35%;
-    height: 10%;
-    font-size: 25px;
-    background-color: darkblue;
-    color: whitesmoke;
-    margin-left: 25%;
+    font-size: 30px;
+    margin-top: 10px;
     cursor: pointer;
+    background-color:#486B00;
+    color: #fff;
+    border-radius: 6px;
+    border: 1px solid #7D4427;
 }
 
 .display-rating {
     font-size: 50px;
     float: right;
-    margin-right: 25%;
-    margin-top: -65px;
+    margin-right: 10%;
+    padding: 3px;
+    margin-top: -45px;
+    color: white;
+    background-color: #486B00;
+    border: 2px solid #7D4427;
+    border-radius: 5%;
 }
 
 p {
-    border: 1.25px solid black;
-    width: auto;
+    background-color: #486B00;
+    border: 1.25px solid #7D4427;
+    width: 100%;
     padding: 5px;
-    font-size: 25px;
-    text-align: center;
+    border-radius: 6px;
 }
 
 .expand {
+    font-size: 20px;
     cursor: pointer;
+    background-color:#486B00;
+    color: #fff;
+    border-radius: 6px;
+    border: 1.5px solid #7D4427;
+    box-shadow: 0px 7px 11px rgba(0,0,0,1);
+}
+
+.description-text {
+    background-color: #486B00;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 25px;
+}
+
+.expand-button {
+    background: none;
 }
 
 }
