@@ -6,15 +6,18 @@ import api from './api.js';
 
 const greaterThanFilter = function(item) {
     console.log(store.filter);
-    return item.rating>=store.filter;  
+        $('.filter').on('change',(e) => {
+            e.preventDefault();
+            for (let i=0; i < item.legnth; i++) {
+            if (item.rating >= store.filter) {
+       
+            return item.rating>=store.filter;  
+            }
+        } 
+    });     
 };
 
-const handleRating = function () {
-    $('.filter').change(()=> {
-        console.log($('.filter').val());
-        greaterThanFilter();
-        });
-    };
+
     //console.log($('.filter').val());      
 
 const render = function () {
@@ -141,7 +144,7 @@ const generateAddBookmarkHtml = function () {
     let addBookmarkHtml = `    
      <form id="main-container">
     <label for="name">Name</label><br>
-    <input id="name" name="name" type="text" placeholder="Trees">
+    <input id="name" name="name" type="text" placeholder="Trees" required>
        <br> 
     <label for="url">URL</label> <br>
     <input id="url" name="url" type="url" placeholder="www.trees.com">
@@ -205,7 +208,6 @@ handleToggleExpandClick();
 handleCancelButton();
 handleAddBookmark();
 render();
-handleRating();
 };
 
 
