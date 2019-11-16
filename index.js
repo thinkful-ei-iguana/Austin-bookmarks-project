@@ -123,8 +123,10 @@ const generateBookmarkHtml = function (item) {
         let unexpandedBookmarkHtml = `
     <form class="collapsed-bookmarks">
     <div class="title-bar">
+    
         <button class="remove" data-item-id='${item.id}'>X</button>
         <legend class="saved-title">${item.title}</legend>
+        <div class="display-rating-collapsed">${item.rating}</div>
     </div>
     <div class="expand-button">
         <button type="button" data-item-id='${item.id}' class="expand">Expand</button>  
